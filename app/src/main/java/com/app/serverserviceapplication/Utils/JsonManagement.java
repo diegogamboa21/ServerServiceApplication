@@ -25,21 +25,21 @@ public class JsonManagement {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 Server server = new Server();
 
-                server.setAddress(jsonObject.getString("ipAddress"));
-                server.setSSLGrade(jsonObject.getString("grade"));
-                server.setCountry(jsonObject.getString("countryCode"));
-                server.setOwner(jsonObject.getString("isp"));
+                server.setAddress(jsonObject.getString("address"));
+                server.setSSLGrade(jsonObject.getString("ssl_grade"));
+                server.setCountry(jsonObject.getString("country"));
+                server.setOwner(jsonObject.getString("owner"));
 
                 servers.add(server);
             }
 
 
-            domain.setServersChanged(response.getBoolean("ServersChanged"));
-            domain.setSSLGrade(response.getString("SSLGrade"));
-            domain.setPreviusSSLGrade(response.getString("PreviusSSLGrade"));
-            domain.setLogo(response.getString("Logo"));
-            domain.setTitle(response.getString("Title"));
-            domain.setDown(response.getBoolean("IsDown"));
+            domain.setServersChanged(response.getBoolean("servers_changed"));
+            domain.setSSLGrade(response.getString("ssl_grade"));
+            domain.setPreviusSSLGrade(response.getString("previous_ssl_grade"));
+            domain.setLogo(response.getString("logo"));
+            domain.setTitle(response.getString("title"));
+            domain.setDown(response.getBoolean("is_down"));
 
             domain.setServers(servers);
 
@@ -56,12 +56,12 @@ public class JsonManagement {
         List<Item> items = new ArrayList<>();
 
         try{
-            JSONArray jsonArray = response.getJSONArray("Items");
+            JSONArray jsonArray = response.getJSONArray("items");
             for(int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 Item item = new Item();
                 item.setWebURL(jsonObject.getString("WebURL"));
-                Domain domain = parseDomainJson(jsonObject.getJSONObject("Site"));
+                Domain domain = parseDomainJson(jsonObject.getJSONObject("info"));
                 item.setSite(domain);
                 items.add(item);
             }
