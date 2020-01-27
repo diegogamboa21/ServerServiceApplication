@@ -3,21 +3,20 @@ package com.app.serverserviceapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.airbnb.lottie.utils.Utils;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.app.serverserviceapplication.Models.Domain;
 import com.app.serverserviceapplication.Utils.JsonManagement;
@@ -39,7 +38,7 @@ public class HomepageActivity extends AppCompatActivity {
 
         editTextFindDomain = (EditText) findViewById(R.id.editTextFindDomain);
         buttonFindDomain = (Button) findViewById(R.id.buttonFindDomain);
-        buttonShowHistory = (Button) findViewById(R.id.buttonShowHistory);
+        buttonShowHistory = (Button) findViewById(R.id.buttonShowServers);
 
         requestQueue = Volley.newRequestQueue(this);
 
@@ -54,6 +53,22 @@ public class HomepageActivity extends AppCompatActivity {
                 } else {
                     GetDomainInfo(page.toLowerCase());
                 }
+            }
+        });
+
+        editTextFindDomain.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE){
+                    String page = editTextFindDomain.getText().toString();
+                    if (page.isEmpty()) {
+                        Toast.makeText(HomepageActivity.this, "Debe ingresar un dominio", Toast.LENGTH_SHORT).show();
+                    } else {
+                        GetDomainInfo(page.toLowerCase());
+                    }
+                    return true;
+                }
+                return false;
             }
         });
 

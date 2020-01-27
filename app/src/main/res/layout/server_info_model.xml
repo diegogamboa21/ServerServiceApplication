@@ -1,26 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorWhite"
-    tools:context=".DomainDescriptionActivity">
-
-    <TextView
-        android:id="@+id/textViewTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:gravity="center"
-        android:padding="5dp"
-        android:text="Domain"
-        android:textColor="@color/colorDarkGray"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TableLayout
         android:id="@+id/layoutServerInfoBlack"
@@ -35,19 +18,34 @@
 
         <TableRow
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewTitleServerBlack"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_span="2"
+                android:text="SERVER"
+                android:textSize="20dp"
+                android:textStyle="bold|italic" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/textView1Black"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="0.4"
-                android:text="Servers Changed:"
+                android:text="IP  Address:"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textViewServersChanged"
+                android:id="@+id/textViewAddressBlack"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
@@ -72,7 +70,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textViewSslGrade"
+                android:id="@+id/textViewSslGradeBlack"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -93,11 +91,11 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="0.4"
-                android:text="Previus SSL grade:"
+                android:text="Country:"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textViewPrevius"
+                android:id="@+id/textViewCountryBlack"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -114,16 +112,16 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/textView8Black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="0.4"
-                android:text="Is Down:"
+                android:text="Owner:"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textViewIsDown"
+                android:id="@+id/textViewIOwnerBlack"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -136,27 +134,5 @@
         </TableRow>
     </TableLayout>
 
-    <ImageView
-        android:id="@+id/imageViewLogo"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_margin="15dp"
-        android:padding="25dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/image_not_found"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
-    <Button
-        android:id="@+id/buttonShowServers"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:background="@drawable/roundcorner_darkgray"
-        android:text="Mostrar Servidores"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -37,10 +37,13 @@
         android:textColorHint="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:lines="1"
+        android:imeOptions="actionDone"
+        android:inputType="text" />
 
     <Button
-        android:id="@+id/buttonShowHistory"
+        android:id="@+id/buttonShowServers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"

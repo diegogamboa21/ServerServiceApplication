@@ -30,6 +30,7 @@ public class JsonManagement {
                 servers.add(server);
             }
 
+
             domain.setServersChanged(response.getBoolean("ServersChanged"));
             domain.setSSLGrade(response.getString("SSLGrade"));
             domain.setPreviusSSLGrade(response.getString("PreviusSSLGrade"));
