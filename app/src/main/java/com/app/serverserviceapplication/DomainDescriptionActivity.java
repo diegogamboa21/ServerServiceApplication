@@ -51,8 +51,10 @@ public class DomainDescriptionActivity extends AppCompatActivity {
             textViewServersChanged.setText("False");
         }
 
-        if (!domain.getLogo().isEmpty() && domain.getLogo() != null) {
-            Picasso.with(this).load(domain.getLogo()).into(imageViewLogo);
+        if (domain.getLogo() != null) {
+            if (!domain.getLogo().isEmpty()) {
+                Picasso.with(this).load(domain.getLogo()).into(imageViewLogo);
+            }
         }
         textViewTitle.setText(domain.getTitle());
         textViewSslGrade.setText(domain.getSSLGrade());
@@ -64,7 +66,10 @@ public class DomainDescriptionActivity extends AppCompatActivity {
             textViewIsDown.setText("False");
         }
 
-        if(domain.getServers().size() == 0){
+        if (domain.getServers() == null) {
+            buttonShowServers.setEnabled(false);
+        }
+        else if (domain.getServers().size() == 0) {
             buttonShowServers.setEnabled(false);
         }
         else {
@@ -77,7 +82,6 @@ public class DomainDescriptionActivity extends AppCompatActivity {
                 }
             });
         }
-
     }
 
     public void ShowServers(){
@@ -86,5 +90,16 @@ public class DomainDescriptionActivity extends AppCompatActivity {
         bundle.putSerializable("servers", (Serializable) domain.getServers());
         intent.putExtra("bundle", bundle);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
     }
 }

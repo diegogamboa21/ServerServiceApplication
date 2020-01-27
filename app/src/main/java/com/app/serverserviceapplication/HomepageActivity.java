@@ -52,10 +52,12 @@ public class HomepageActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Evaluate edit text
                 String page = editTextFindDomain.getText().toString();
-                if (page.isEmpty()) {
-                    Toast.makeText(HomepageActivity.this, "Debe ingresar un dominio", Toast.LENGTH_SHORT).show();
-                } else {
-                    GetDomainInfo(page.toLowerCase());
+                if (page != null) {
+                    if (page.isEmpty()) {
+                        Toast.makeText(HomepageActivity.this, "Debe ingresar un dominio", Toast.LENGTH_SHORT).show();
+                    } else {
+                        GetDomainInfo(page.toLowerCase());
+                    }
                 }
             }
         });
@@ -65,10 +67,12 @@ public class HomepageActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE){
                     String page = editTextFindDomain.getText().toString();
-                    if (page.isEmpty()) {
-                        Toast.makeText(HomepageActivity.this, "Debe ingresar un dominio", Toast.LENGTH_SHORT).show();
-                    } else {
-                        GetDomainInfo(page.toLowerCase());
+                    if (page != null) {
+                        if (page.isEmpty()) {
+                            Toast.makeText(HomepageActivity.this, "Debe ingresar un dominio", Toast.LENGTH_SHORT).show();
+                        } else {
+                            GetDomainInfo(page.toLowerCase());
+                        }
                     }
                     return true;
                 }

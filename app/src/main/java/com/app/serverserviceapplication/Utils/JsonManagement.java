@@ -25,8 +25,8 @@ public class JsonManagement {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 Server server = new Server();
 
-                server.setAddress(jsonObject.getString("address"));
-                server.setSSLGrade(jsonObject.getString("ssl_grade"));
+                server.setAddress(jsonObject.getString("ipAddress"));
+                server.setSSLGrade(jsonObject.getString("grade"));
                 server.setCountry(jsonObject.getString("country"));
                 server.setOwner(jsonObject.getString("owner"));
 
@@ -35,7 +35,7 @@ public class JsonManagement {
 
 
             domain.setServersChanged(response.getBoolean("servers_changed"));
-            domain.setSSLGrade(response.getString("ssl_grade"));
+            domain.setSSLGrade(response.getString("grade"));
             domain.setPreviusSSLGrade(response.getString("previous_ssl_grade"));
             domain.setLogo(response.getString("logo"));
             domain.setTitle(response.getString("title"));
