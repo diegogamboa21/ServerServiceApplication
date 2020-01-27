@@ -1,6 +1,9 @@
 package com.app.serverserviceapplication.Utils;
 
+import android.content.ClipData;
+
 import com.app.serverserviceapplication.Models.Domain;
+import com.app.serverserviceapplication.Models.Item;
 import com.app.serverserviceapplication.Models.Server;
 
 import org.json.JSONArray;
@@ -47,6 +50,27 @@ public class JsonManagement {
 
 
         return domain;
+    }
+
+    public static List<Item> ParseItemsJson(JSONObject response){
+        List<Item> items = new ArrayList<>();
+
+        try{
+            JSONArray jsonArray = response.getJSONArray("Items");
+            for(int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                Item item = new Item();
+                item.setWebURL(jsonObject.getString("WebURL"));
+                Domain domain = parseDomainJson(jsonObject.getJSONObject("Site"));
+                item.setSite(domain);
+                items.add(item);
+            }
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
+
+        return items;
     }
 
 }

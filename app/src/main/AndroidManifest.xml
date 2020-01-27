@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ServersDescriptionActivity"></activity>
+        <activity android:name=".ItemsInfoActivity"></activity>
+        <activity android:name=".ServersDescriptionActivity" />
         <activity android:name=".DomainDescriptionActivity" />
         <activity android:name=".HomepageActivity" />
         <activity android:name=".MainActivity">

@@ -19,6 +19,7 @@ import java.io.Serializable;
 public class DomainDescriptionActivity extends AppCompatActivity {
 
     Bundle bundle;
+    Domain domain;
 
     ImageView imageViewLogo;
     TextView textViewTitle;
@@ -42,7 +43,7 @@ public class DomainDescriptionActivity extends AppCompatActivity {
         buttonShowServers = findViewById(R.id.buttonShowServers);
 
         bundle = getIntent().getBundleExtra("bundle");
-        Domain domain = (Domain) bundle.getSerializable("domain");
+        domain = (Domain) bundle.getSerializable("domain");
 
         if (domain.isServersChanged() && domain.isServersChanged()){
             textViewServersChanged.setText("True");
@@ -68,12 +69,22 @@ public class DomainDescriptionActivity extends AppCompatActivity {
         }
         else {
 
-            Intent intent = new Intent(getApplicationContext(), ServersDescriptionActivity.class);
-            Bundle bundle= new Bundle();
-            bundle.putSerializable("servers", (Serializable) domain.getServers());
-            intent.putExtra("bundle", bundle);
-            startActivity(intent);
+            buttonShowServers = findViewById(R.id.buttonShowServers);
+            buttonShowServers.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ShowServers();
+                }
+            });
         }
 
+    }
+
+    public void ShowServers(){
+        Intent intent = new Intent(getApplicationContext(), ServersDescriptionActivity.class);
+        Bundle bundle= new Bundle();
+        bundle.putSerializable("servers", (Serializable) domain.getServers());
+        intent.putExtra("bundle", bundle);
+        startActivity(intent);
     }
 }

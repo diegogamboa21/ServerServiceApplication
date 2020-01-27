@@ -19,9 +19,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.app.serverserviceapplication.Models.Domain;
+import com.app.serverserviceapplication.Models.Item;
 import com.app.serverserviceapplication.Utils.JsonManagement;
 
 import org.json.JSONObject;
+
+import java.io.Serializable;
+import java.util.List;
 
 public class HomepageActivity extends AppCompatActivity {
 
@@ -72,6 +76,13 @@ public class HomepageActivity extends AppCompatActivity {
             }
         });
 
+        buttonShowHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GetItemsList();
+            }
+        });
+
     }
 
     private void GetDomainInfo(String page) {
@@ -99,6 +110,31 @@ public class HomepageActivity extends AppCompatActivity {
 
         requestQueue.add(jsonObjectRequest);
 
+    }
+
+    private void GetItemsList(){
+        String url = "http://54.67.44.78:9000/items";
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                List<Item> items = JsonManagement.ParseItemsJson(response);
+
+                Intent intent = new Intent(getApplicationContext(), ItemsInfoActivity.class);
+                Bundle bundle= new Bundle();
+                bundle.putSerializable("items",(Serializable) items);
+                intent.putExtra("bundle", bundle);
+                startActivity(intent);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(HomepageActivity.this, "Error al consultar la página", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        );
+
+        requestQueue.add(jsonObjectRequest);
     }
 
 }
