@@ -2,8 +2,10 @@ package com.app.serverserviceapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,12 +24,7 @@ import com.app.serverserviceapplication.Utils.JsonManagement;
 
 import org.json.JSONObject;
 
-public class HomepageActivity extends AppCompatActivity implements
-        DomainDescriptionFragment.OnFragmentInteractionListener,
-        DomainHistoryFragment.OnFragmentInteractionListener {
-
-    DomainDescriptionFragment domainDescriptionFragment;
-    DomainHistoryFragment domainHistoryFragment;
+public class HomepageActivity extends AppCompatActivity {
 
     Button buttonFindDomain;
     Button buttonShowHistory;
@@ -40,9 +37,6 @@ public class HomepageActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
-        domainDescriptionFragment = new DomainDescriptionFragment();
-        domainHistoryFragment = new DomainHistoryFragment();
-
         editTextFindDomain = (EditText) findViewById(R.id.editTextFindDomain);
         buttonFindDomain = (Button) findViewById(R.id.buttonFindDomain);
         buttonShowHistory = (Button) findViewById(R.id.buttonShowHistory);
@@ -54,34 +48,35 @@ public class HomepageActivity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
                 //Evaluate edit text
-                String domain = editTextFindDomain.getText().toString();
-                if (domain.isEmpty()) {
+                String page = editTextFindDomain.getText().toString();
+                if (page.isEmpty()) {
                     Toast.makeText(HomepageActivity.this, "Debe ingresar un dominio", Toast.LENGTH_SHORT).show();
                 } else {
-                    GetDomainInfo(domain);
-
-                    //Show the fragment domain description
-                    getSupportFragmentManager().beginTransaction().add(R.id.domainDescriptionFragment, domainDescriptionFragment).commit();
+                    GetDomainInfo(page.toLowerCase());
                 }
             }
         });
 
     }
 
-    private void GetDomainInfo(String domain) {
+    private void GetDomainInfo(String page) {
 
-        String url = "http://54.67.44.78:9000/"+ domain;
+        String url = "http://54.67.44.78:9000/" + page;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 Domain domain = JsonManagement.parseDomainJson(response);
-                //Call the fragment
 
+                Intent intent = new Intent(getApplicationContext(), DomainDescriptionActivity.class);
+                Bundle bundle= new Bundle();
+                bundle.putSerializable("domain",domain);
+                intent.putExtra("bundle", bundle);
+                startActivity(intent);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Toast.makeText(HomepageActivity.this, "Error al consultar la página", Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -91,8 +86,4 @@ public class HomepageActivity extends AppCompatActivity implements
 
     }
 
-        @Override
-        public void onFragmentInteraction(Uri uri) {
-
-        }
-    }
+}

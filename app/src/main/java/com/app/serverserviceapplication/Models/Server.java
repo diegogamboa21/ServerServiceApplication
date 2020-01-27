@@ -1,6 +1,8 @@
 package com.app.serverserviceapplication.Models;
 
-public class Server {
+import java.io.Serializable;
+
+public class Server implements Serializable {
 
     private String Address;
     private String SSLGrade;

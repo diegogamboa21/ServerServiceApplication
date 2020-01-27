@@ -1,10 +1,10 @@
 package com.app.serverserviceapplication.Models;
 
-import java.sql.Timestamp;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Domain {
+public class Domain implements Serializable {
 
     List<Server> Servers;
     private boolean ServersChanged;
