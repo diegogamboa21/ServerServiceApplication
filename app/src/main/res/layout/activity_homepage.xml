@@ -4,15 +4,105 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     tools:context=".HomepageActivity">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/computerLAV"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_margin="15dp"
+        android:background="@android:color/transparent"
+
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/scrollingwireframe"
+        app:lottie_speed="1" />
+
+    <TextView
+        android:id="@+id/textViewCreatedBy"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:paddingTop="1dp"
+        android:paddingBottom="5dp"
+        android:text="Created by Diego Gamboa"
+        android:textColor="@color/colorDarkGray"
+        android:textColorHint="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonShowHistory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginBottom="48dp"
+        android:background="@drawable/roundcorner_darkgray"
+        android:text="Mostrar Historial"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.09" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorDarkGray"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.687">
+
+        <TextView
+            android:id="@+id/textViewFindDomain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="20dp"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp"
+            android:text="Ingresa el dominio a buscar"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorWhite" />
+
+        <EditText
+            android:id="@+id/editTextFindDomain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/colorWhite"
+            android:hint="test.com"
+            android:padding="5dp"
+            android:textColor="@color/colorDarkGray"
+            android:textColorHint="@color/colorDarkGray" />
+
+        <Button
+            android:id="@+id/buttonFindDomain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/roundcorner_white"
+            android:text="Buscar Dominio"
+            android:textColor="@color/colorDarkGray" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
